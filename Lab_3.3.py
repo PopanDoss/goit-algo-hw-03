@@ -12,10 +12,12 @@ raw_numbers = [
     "38050 111 22 11   ",
 ]
 
-#створюємо пустий список в який будемо записувати значення
-sanitized_number = [] 
+
+
 #створюємо функцію для перетворення номерів 
 def normalize_phone(num) : 
+    #створимо змінну, куди запишемо відредагований номер
+    correct_value_number = () 
     #отримуємо тільки числові значення номеру в форматі рядку 
     pattern = r"[\d]+"
     only_numbers = " ".join(re.findall(pattern, num))
@@ -29,13 +31,12 @@ def normalize_phone(num) :
         
     else:
         print("Некорректно введені номери ")
-    # отриманий рядок записуємо в писок та повертаємо його
-    sanitized_number.append(normal_number)
-    return sanitized_number
+    #отриманий рядок записуємо в писок та повертаємо його
+    correct_value_number = normal_number
+    return correct_value_number
     
-#Запускаємо функцю для кожного елемента зі списку
-for num in raw_numbers:
-    normalize_phone(num)
 
+
+sanitized_number = [normalize_phone(num) for num in raw_numbers]
 # Виводимо список відредагованих елементів на екран
-print("Нормалізовані номери телефонів для SMS-розсилки: ",sanitized_number)
+print("Нормалізовані номери телефонів для SMS-розсилки: ", sanitized_number)

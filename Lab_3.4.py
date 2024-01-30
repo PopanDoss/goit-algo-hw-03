@@ -3,14 +3,14 @@ from datetime import datetime as dtdt
 
 #список словників, що будемо перетворювати
 users = [
-    {"name": "John Doe", "birthday": "1991.03.29"},
-    {"name": "Jane Smith", "birthday": "1990.01.29"}
+    {"name": "John Doe", "birthday": "1991.02.03"},
+    {"name": "Jane Smith", "birthday": "1990.02.01"}
 ]
 
 #Створюємо функцію
 def get_upcoming_birthdays(users):
     #Створюємо список який будемо наповнювати
-    upcoming_birthdays = []
+    list_birthday_days = []
     # Визначаємо дату сьогодні
     today = dtdt.today().date()
     #перебираємо значення для кожного словнику в списку
@@ -28,17 +28,17 @@ def get_upcoming_birthdays(users):
             if 7>= different_day>=0:
                 #Якщо так, визначаємо який це день тижня
                 day_in_week = birthday_this_year.isoweekday()
-                #Змінюємо дату на понеділок,якщо вона потрапляєна вихідні, та додаємо словником у список
+                #Змінюємо дату на понеділок,якщо вона потрапляєна на вихідні, та додаємо словником у список
                 if day_in_week <6 :
-                    upcoming_birthdays.append({"name":user["name"], "birthday": birthday})
+                    list_birthday_days.append({"name":user["name"], "birthday": birthday})
                 elif day_in_week == 6:
-                    upcoming_birthdays.append({"name":user["name"], "birthday": (birthday_this_year + dt.timedelta(days=2)).strftime("%Y.%m.%d")})
+                    list_birthday_days.append({"name":user["name"], "birthday": (birthday_this_year + dt.timedelta(days=2)).strftime("%Y.%m.%d")})
                 else :
-                    upcoming_birthdays.append({"name":user["name"], "birthday": (birthday_this_year + dt.timedelta(days=1)).strftime("%Y.%m.%d")})
-    #Повертаємо відображення отриманих словників в списку
-    return print(upcoming_birthdays) 
+                    list_birthday_days.append({"name":user["name"], "birthday": (birthday_this_year + dt.timedelta(days=1)).strftime("%Y.%m.%d")})
+    #Повертаємо отриманий список словників
+    return list_birthday_days 
 
-#викликаємо функцію
-get_upcoming_birthdays(users)
+upcoming_birthdays = get_upcoming_birthdays(users)
+print("Список привітань на цьому тижні: ", upcoming_birthdays)
 
 
