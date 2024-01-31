@@ -15,10 +15,10 @@ def get_numbers_ticket(min, max, quantity):
         max = int(max)
         quantity = int(quantity)
         # перевіряємо, чи відповідають умовам введені користувачем дані
-        if (min >= 1) and (max <= 1000) and (min < max) and (0< quantity <= max) and (quantity < max - min) :
+        if (min >= 1) and (max <= 1000) and (min < max) and (1<= quantity <= ((max+1) - min)) :
             #Генеруємо виграшну комбінацію
             while len(win_list) < quantity:
-                win_number = random.randrange(min,max)
+                win_number = random.randrange(min,(max+1))
                 if win_number not in win_list:
                     win_list.append(win_number)
                 else:
